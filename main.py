@@ -50,8 +50,9 @@ def changeCoords(coordinate,screen):
 def chooseChamp():
     for x in range(755-448,1166-448,82):
         for y in range(430-294,731-294,75):
-            click((x,y))
+            click(changeCoords((x,y),"client"))
             time.sleep(0.2)
+    time.sleep(1)
 def buyItems():
     pressKey(keyboardButton.P)
     time.sleep(1)
@@ -97,11 +98,14 @@ def b():
                 click(changeCoords(coordinates.client.findMatchButton,"client"))
             if(locate("acceptButton",screenshot)!=None):
                 click(changeCoords(coordinates.client.acceptButton,"client"))
-        if(locate("loadout",screenshot)==None):
+        if(locate("chooseChampion",screenshot)!=None):
             chooseChamp()
             click(changeCoords(coordinates.client.searchButton,"client"))
+            time.sleep(0.5)
             pyautogui.typewrite("sivir")
+            time.sleep(1)
             click(changeCoords(coordinates.client.champButton,"client"))
+            time.sleep(1)
             click(changeCoords(coordinates.client.lockInButton,"client"))
 def c():
     while(pyautogui.locateCenterOnScreen(name("minimap"))==None):
@@ -114,6 +118,7 @@ def c():
     w=False
     e=False
     pressKey(keyboardButton.Y)
+    buyItems()
     while(True):
         try:
             screenshot = wincap.get_screenshot()
@@ -122,7 +127,7 @@ def c():
         
         if(locate("recallButton",screenshot)==None):
             #checking health
-            if(pyautogui.pixelMatchesColor(960,954,(1,13,7))):
+            if(pyautogui.pixelMatchesColor(877,955,(1,13,7))):
                 rightClick(changeCoords(coordinates.game.base,"game"))
                 rightClick(changeCoords(coordinates.game.base,"game"))
                 pressKey(keyboardButton.D)
@@ -133,75 +138,75 @@ def c():
                 pressKey(keyboardButton.B)
                 time.sleep(9)
                 buyItems()
-
-            #finding casters
-            lower_range=np.array([98,155,167])
-            upper_range=np.array([102,165,237])
-            img=name("casterMinion")
-            img=cv.imread(img,cv.IMREAD_UNCHANGED)
-            img=img[...,:3]
-            img=np.ascontiguousarray(img)
-            img=cv.cvtColor(img,cv.COLOR_BGR2HSV)
-            img=cv.inRange(img,lower_range,upper_range)
-            background=cv.cvtColor(screenshot,cv.COLOR_BGR2HSV)
-            background=cv.inRange(background,lower_range,upper_range)
-            result=cv.matchTemplate(background,img,cv.TM_CCORR)
-            min_val,max_val,min_loc,max_loc=cv.minMaxLoc(result)
-            if(max_val>=260000):
-                pyautogui.moveTo(changeCoords(max_loc,"game"))  
-                pressKey(keyboardButton.Space)
             else:
-                rightClick(changeCoords(coordinates.game.tower,"game"))
-            
-            #finding champ
-            lower_range=np.array([0,132,144])
-            upper_range=np.array([5,192,255])
-            img=name("champion")
-            img=cv.imread(img,cv.IMREAD_UNCHANGED)
-            img=img[...,:3]
-            img=np.ascontiguousarray(img)
-            background=screenshot
-            img=cv.cvtColor(img,cv.COLOR_BGR2HSV)
-            background=cv.cvtColor(background,cv.COLOR_BGR2HSV)
-            img=cv.inRange(img,lower_range,upper_range)
-            background=cv.inRange(background,lower_range,upper_range)
-            result=cv.matchTemplate(background,img,cv.TM_CCOEFF_NORMED)
-            min_val,max_val,min_loc,max_loc=cv.minMaxLoc(result)
-            if(max_val>=0.6):
-                max_loc=(max_loc[0]+50,max_loc[1]+75)
-                pyautogui.moveTo(changeCoords(max_loc,"game"))
-                pressKey(keyboardButton.E)
-                pressKey(keyboardButton.R)
-                pressKey(keyboardButton.Q)
-                pressKey(keyboardButton.W)
-                pressKey(keyboardButton.Space)
-                time.sleep(0.5)
-            elif(max_val>=0.4):            
-                pressKey(keyboardButton.W)
-            
-            #levelling up
-            if(locate("levelUpButton",screenshot)!=None):
-                directInputController.press_key(keyboardButton.Lctrl)
-                time.sleep(0.05)
-                pressKey(keyboardButton.R)
-                if(q==False):
-                    pressKey(keyboardButton.Q)
-                    q=True
-                elif(w==False):
-                    pressKey(keyboardButton.W)
-                    w=True
-                elif(e==False):
+                #finding casters
+                lower_range=np.array([98,155,167])
+                upper_range=np.array([102,165,237])
+                img=name("casterMinion")
+                img=cv.imread(img,cv.IMREAD_UNCHANGED)
+                img=img[...,:3]
+                img=np.ascontiguousarray(img)
+                img=cv.cvtColor(img,cv.COLOR_BGR2HSV)
+                img=cv.inRange(img,lower_range,upper_range)
+                background=cv.cvtColor(screenshot,cv.COLOR_BGR2HSV)
+                background=cv.inRange(background,lower_range,upper_range)
+                result=cv.matchTemplate(background,img,cv.TM_CCORR)
+                min_val,max_val,min_loc,max_loc=cv.minMaxLoc(result)
+                if(max_val>=260000):
+                    pyautogui.moveTo(changeCoords(max_loc,"game"))  
+                    pressKey(keyboardButton.Space)
+                else:
+                    rightClick(changeCoords(coordinates.game.tower,"game"))
+                
+                #finding champ
+                lower_range=np.array([0,132,144])
+                upper_range=np.array([5,192,255])
+                img=name("champion")
+                img=cv.imread(img,cv.IMREAD_UNCHANGED)
+                img=img[...,:3]
+                img=np.ascontiguousarray(img)
+                background=screenshot
+                img=cv.cvtColor(img,cv.COLOR_BGR2HSV)
+                background=cv.cvtColor(background,cv.COLOR_BGR2HSV)
+                img=cv.inRange(img,lower_range,upper_range)
+                background=cv.inRange(background,lower_range,upper_range)
+                result=cv.matchTemplate(background,img,cv.TM_CCOEFF_NORMED)
+                min_val,max_val,min_loc,max_loc=cv.minMaxLoc(result)
+                if(max_val>=0.6):
+                    pressKey(keyboardButton.T)
+                    max_loc=(max_loc[0]+50,max_loc[1]+75)
+                    pyautogui.moveTo(changeCoords(max_loc,"game"))
                     pressKey(keyboardButton.E)
-                    e=True
-                pressKey(keyboardButton.Q)
-                pressKey(keyboardButton.W)
-                pressKey(keyboardButton.E )
-                directInputController.release_key(keyboardButton.Lctrl)
+                    pressKey(keyboardButton.R)
+                    pressKey(keyboardButton.Q)
+                    pressKey(keyboardButton.W)
+                    pressKey(keyboardButton.Space)
+                    pressKey(keyboardButton.T)
+                    time.sleep(0.5)
+                elif(max_val>=0.4):            
+                    pressKey(keyboardButton.W)
+                
+                #levelling up
+                if(locate("levelUpButton",screenshot)!=None):
+                    directInputController.press_key(keyboardButton.Lctrl)
+                    time.sleep(0.05)
+                    pressKey(keyboardButton.R)
+                    if(q==False):
+                        pressKey(keyboardButton.Q)
+                        q=True
+                    elif(w==False):
+                        pressKey(keyboardButton.W)
+                        w=True
+                    elif(e==False):
+                        pressKey(keyboardButton.E)
+                        e=True
+                    pressKey(keyboardButton.Q)
+                    pressKey(keyboardButton.W)
+                    pressKey(keyboardButton.E )
+                    directInputController.release_key(keyboardButton.Lctrl)
         else:
             buyItems()
 def d():
-    while("League of Legends" not in pyautogui.getAllTitles()):
-        time.sleep(0.1)
     wincap = WindowCapture('League of Legends')
     while(True):
         try:
@@ -220,6 +225,7 @@ def main():
         a()
         b()
         c()
+        time.sleep(60)
         d()
 
 time.sleep(2)

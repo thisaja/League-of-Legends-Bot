@@ -346,11 +346,11 @@
                         },
                         {
                             "name": "ItemShopPrevResizeHeight",
-                            "value": "1200"
+                            "value": "768"
                         },
                         {
                             "name": "ItemShopPrevResizeWidth",
-                            "value": "1920"
+                            "value": "1024"
                         },
                         {
                             "name": "ItemShopPrevX",
@@ -652,7 +652,7 @@
                         },
                         {
                             "name": "evtChampionOnly",
-                            "value": "[`]"
+                            "value": "[t]"
                         },
                         {
                             "name": "evtChatHistory",
@@ -816,7 +816,7 @@
                         },
                         {
                             "name": "evtRadialEmoteInstantOpen",
-                            "value": "[t]"
+                            "value": "[<Unbound>]"
                         },
                         {
                             "name": "evtRadialEmoteOpen",
