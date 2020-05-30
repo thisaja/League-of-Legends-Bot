@@ -75,6 +75,9 @@ def buyItems():
     rightClick(changeCoords(coordinates.game.item9,"game"))
     time.sleep(1)
     pressKey(keyboardButton.Escape)
+    time.sleep(5)
+    # rightClick(changeCoords(coordinates.game.tower,"game"))
+    # time.sleep(10)
 def a():
     changeSettings()
     click(changeCoords(coordinates.client.playButton,"client"))
@@ -151,44 +154,42 @@ def c():
                 img=cv.inRange(img,lower_range,upper_range)
                 background=cv.cvtColor(screenshot,cv.COLOR_BGR2HSV)
                 background=cv.inRange(background,lower_range,upper_range)
-                result=cv.matchTemplate(background,img,cv.TM_CCORR)
+                result=cv.matchTemplate(background,img,cv.TM_CCOEFF)
                 min_val,max_val,min_loc,max_loc=cv.minMaxLoc(result)
-                if(max_val>=260000):
+                if(max_val>=250000):
                     pyautogui.moveTo(changeCoords(max_loc,"game"))  
                     pressKey(keyboardButton.Space)
                 else:
                     rightClick(changeCoords(coordinates.game.tower,"game"))
                 
-                #finding champ
-                lower_range=np.array([0,132,144])
-                upper_range=np.array([5,192,255])
-                img=name("champion")
+                #checking tower range
+                lower_range=np.array([49,0,135])
+                upper_range=np.array([100,40,166])
+                img=name("tower")
                 img=cv.imread(img,cv.IMREAD_UNCHANGED)
                 img=img[...,:3]
                 img=np.ascontiguousarray(img)
-                background=screenshot
                 img=cv.cvtColor(img,cv.COLOR_BGR2HSV)
-                background=cv.cvtColor(background,cv.COLOR_BGR2HSV)
+                background=cv.cvtColor(screenshot,cv.COLOR_BGR2HSV)
                 img=cv.inRange(img,lower_range,upper_range)
                 background=cv.inRange(background,lower_range,upper_range)
-                result=cv.matchTemplate(background,img,cv.TM_CCOEFF_NORMED)
+                result=cv.matchTemplate(background,img,cv.TM_SQDIFF)
                 min_val,max_val,min_loc,max_loc=cv.minMaxLoc(result)
-                if(max_val>=0.6):
-                    #checking tower range
-                    lower_range=np.array([49,0,135])
-                    upper_range=np.array([100,40,166])
-                    img=name("tower")
+                if(max_val<=30000000.0):
+                    #finding champ
+                    lower_range=np.array([0,132,144])
+                    upper_range=np.array([5,192,255])
+                    img=name("champion")
                     img=cv.imread(img,cv.IMREAD_UNCHANGED)
                     img=img[...,:3]
                     img=np.ascontiguousarray(img)
-                    background=screenshot
                     img=cv.cvtColor(img,cv.COLOR_BGR2HSV)
-                    background=cv.cvtColor(background,cv.COLOR_BGR2HSV)
+                    background=cv.cvtColor(screenshot,cv.COLOR_BGR2HSV)
                     img=cv.inRange(img,lower_range,upper_range)
                     background=cv.inRange(background,lower_range,upper_range)
-                    result=cv.matchTemplate(background,img,cv.TM_SQDIFF)
+                    result=cv.matchTemplate(background,img,cv.TM_CCOEFF_NORMED)
                     min_val,max_val,min_loc,max_loc=cv.minMaxLoc(result)
-                    if(max_val>=30000000.0):
+                    if(max_val>=0.6):
                         pressKey(keyboardButton.T)
                         max_loc=(max_loc[0]+50,max_loc[1]+75)
                         pyautogui.moveTo(changeCoords(max_loc,"game"))
@@ -198,10 +199,9 @@ def c():
                         pressKey(keyboardButton.W)
                         pressKey(keyboardButton.Space)
                         pressKey(keyboardButton.T)
-                        time.sleep(0.5)
-                elif(max_val>=0.4):            
-                    pressKey(keyboardButton.W)
-                
+                    else:
+                        pressKey(keyboardButton.W)
+
                 #levelling up
                 if(locate("levelUpButton",screenshot)!=None):
                     directInputController.press_key(keyboardButton.Lctrl)
@@ -245,46 +245,39 @@ def d():
 # cv.createTrackbar("US","Tracking",255,255,nothing)
 # cv.createTrackbar("UV","Tracking",255,255,nothing)
 # def e():
-    # lh=cv.getTrackbarPos("LH","Tracking")
-    # ls=cv.getTrackbarPos("LS","Tracking")
-    # lv=cv.getTrackbarPos("LV","Tracking")
-    # uh=cv.getTrackbarPos("UH","Tracking")
-    # us=cv.getTrackbarPos("US","Tracking")
-    # uv=cv.getTrackbarPos("UV","Tracking")
-    # while True:
-    #     wincap=WindowCapture('League of Legends (TM) Client')
-    #     try:
-    #         screenshot = wincap.get_screenshot()
-    #     except:
-    #         break
-    #     lower_range=np.array([49,0,135])
-    #     upper_range=np.array([100,40,166])
-    #     img=name("tower")
-    #     img=cv.imread(img,cv.IMREAD_UNCHANGED)
-    #     img=img[...,:3]
-    #     img=np.ascontiguousarray(img)
-    #     test=name("test4")
-    #     test=cv.imread(test,cv.IMREAD_UNCHANGED)
-    #     test=test[...,:3]
-    #     test=np.ascontiguousarray(test)
+#     # lh=cv.getTrackbarPos("LH","Tracking")
+#     # ls=cv.getTrackbarPos("LS","Tracking")
+#     # lv=cv.getTrackbarPos("LV","Tracking")
+#     # uh=cv.getTrackbarPos("UH","Tracking")
+#     # us=cv.getTrackbarPos("US","Tracking")
+#     # uv=cv.getTrackbarPos("UV","Tracking")
+#     while True:
+#         wincap=WindowCapture('League of Legends (TM) Client')
+#         try:
+#             screenshot = wincap.get_screenshot()
+#         except:
+#             break
+#         lower_range=np.array([98,155,167])
+#         upper_range=np.array([102,165,237])
+#         img=name("casterMinion")
+#         img=cv.imread(img,cv.IMREAD_UNCHANGED)
+#         img=img[...,:3]
+#         img=np.ascontiguousarray(img)
+#         img=cv.cvtColor(img,cv.COLOR_BGR2HSV)
+#         img=cv.inRange(img,lower_range,upper_range)
+#         test=cv.cvtColor(screenshot,cv.COLOR_BGR2HSV)
+#         test=cv.inRange(test,lower_range,upper_range)
+#         result=cv.matchTemplate(test,img,cv.TM_CCORR)
+#         min_val,max_val,min_loc,max_loc=cv.minMaxLoc(result)
 
-    #     test=screenshot
+#         result=cv.matchTemplate(test,img,cv.TM_CCOEFF)
+#         min_val,max_val,min_loc,max_loc=cv.minMaxLoc(result)
+#         print(max_val)
+#         result=cv.bitwise_and(test,test,result)
+#         cv.rectangle(result,max_loc,(max_loc[0]+50,max_loc[1]+200),color=(223,82,134),thickness=2)
 
-    #     img=cv.cvtColor(img,cv.COLOR_BGR2HSV)
-    #     test=cv.cvtColor(test,cv.COLOR_BGR2HSV)
-    #     img=cv.inRange(img,lower_range,upper_range)
-    #     test=cv.inRange(test,lower_range,upper_range)
-
-    #     result=cv.matchTemplate(test,img,cv.TM_SQDIFF)
-    #     min_val,max_val,min_loc,max_loc=cv.minMaxLoc(result)
-    #     if(max_val>=30000000.0):
-    #         print(max_loc,max_val)
-            
-    #     result=cv.bitwise_and(test,test,result)
-    #     cv.rectangle(result,max_loc,(max_loc[0]+50,max_loc[1]+200),color=(223,82,134),thickness=2)
-
-    #     cv.imshow("result",result)
-    #     cv.waitKey(1)#40000000.0
+#         cv.imshow("result",result)
+#         cv.waitKey(1)#4,161,600 ->
 def main():
     while True:
         a()
@@ -294,4 +287,3 @@ def main():
         d()
 
 main()
- 

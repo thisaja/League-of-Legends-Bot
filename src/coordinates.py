@@ -16,7 +16,7 @@ class client:
     intermediateButton=813-clientCoords[0],739-clientCoords[1]
     confirmButton=874-clientCoords[0],844-clientCoords[1]
     findMatchButton=872-clientCoords[0],841-clientCoords[1]
-    acceptButton=958-clientCoords[0],759-clientCoords[1]
+    acceptButton=958-clientCoords[0],734-clientCoords[1]
     searchButton=1063-clientCoords[0],376-clientCoords[1]
     champButton=754-clientCoords[0],426-clientCoords[1]
     lockInButton=962-clientCoords[0],778-clientCoords[1]
