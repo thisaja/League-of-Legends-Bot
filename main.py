@@ -136,16 +136,22 @@ def c():
                 rightClick(changeCoords(coordinates.game.base,"game"))
                 pressKey(keyboardButton.D)
                 pressKey(keyboardButton.F)
-                rightClick(changeCoords(coordinates.game.base,"game"))
-                rightClick(changeCoords(coordinates.game.base,"game"))
-                time.sleep(8)
-                pressKey(keyboardButton.B)
-                time.sleep(9)
-                buyItems()
+                x=0
+                flag=True
+                for i in range(8):
+                    flag=pyautogui.pixelMatchesColor(950,955,(1,13,7))
+                    rightClick(changeCoords(coordinates.game.base,"game"))
+                    time.sleep(1)
+                    if(flag==False):
+                        break
+                if flag:
+                    pressKey(keyboardButton.B)
+                    time.sleep(9)
+                    buyItems()
             else:
                 #finding casters
-                lower_range=np.array([98,155,167])
-                upper_range=np.array([102,165,237])
+                lower_range=np.array([111,167,81])
+                upper_range=np.array([121,215,130])
                 img=name("casterMinion")
                 img=cv.imread(img,cv.IMREAD_UNCHANGED)
                 img=img[...,:3]
@@ -154,14 +160,28 @@ def c():
                 img=cv.inRange(img,lower_range,upper_range)
                 background=cv.cvtColor(screenshot,cv.COLOR_BGR2HSV)
                 background=cv.inRange(background,lower_range,upper_range)
-                result=cv.matchTemplate(background,img,cv.TM_CCOEFF)
+                result=cv.matchTemplate(background,img,cv.TM_CCOEFF_NORMED)
                 min_val,max_val,min_loc,max_loc=cv.minMaxLoc(result)
-                if(max_val>=250000):
+                if(max_val>=0.5):
                     pyautogui.moveTo(changeCoords(max_loc,"game"))  
                     pressKey(keyboardButton.Space)
                 else:
                     rightClick(changeCoords(coordinates.game.tower,"game"))
-                
+
+                #finding champ
+                lower_range=np.array([2,204,165])
+                upper_range=np.array([4,204,166])
+                img=name("champHealth")
+                img=cv.imread(img,cv.IMREAD_UNCHANGED)
+                img=img[...,:3]
+                img=np.ascontiguousarray(img)
+                img=cv.cvtColor(img,cv.COLOR_BGR2HSV)
+                background=cv.cvtColor(screenshot,cv.COLOR_BGR2HSV)
+                img=cv.inRange(img,lower_range,upper_range)
+                background=cv.inRange(background,lower_range,upper_range)
+                result=cv.matchTemplate(background,img,cv.TM_CCOEFF_NORMED)
+                minChamp_val,maxChamp_val,minChamp_loc,maxChamp_loc=cv.minMaxLoc(result)
+
                 #checking tower range
                 lower_range=np.array([49,0,135])
                 upper_range=np.array([100,40,166])
@@ -175,33 +195,23 @@ def c():
                 background=cv.inRange(background,lower_range,upper_range)
                 result=cv.matchTemplate(background,img,cv.TM_SQDIFF)
                 min_val,max_val,min_loc,max_loc=cv.minMaxLoc(result)
-                if(max_val<=30000000.0):
-                    #finding champ
-                    lower_range=np.array([0,132,144])
-                    upper_range=np.array([5,192,255])
-                    img=name("champion")
-                    img=cv.imread(img,cv.IMREAD_UNCHANGED)
-                    img=img[...,:3]
-                    img=np.ascontiguousarray(img)
-                    img=cv.cvtColor(img,cv.COLOR_BGR2HSV)
-                    background=cv.cvtColor(screenshot,cv.COLOR_BGR2HSV)
-                    img=cv.inRange(img,lower_range,upper_range)
-                    background=cv.inRange(background,lower_range,upper_range)
-                    result=cv.matchTemplate(background,img,cv.TM_CCOEFF_NORMED)
-                    min_val,max_val,min_loc,max_loc=cv.minMaxLoc(result)
-                    if(max_val>=0.6):
+                
+                #checking if theres a enemy champion
+                if(maxChamp_val>=0.5):
+                    #checking if you are not in tower range
+                    if(max_val<=30000000.0):
                         pressKey(keyboardButton.T)
-                        max_loc=(max_loc[0]+50,max_loc[1]+75)
-                        pyautogui.moveTo(changeCoords(max_loc,"game"))
+                        maxChamp_loc=(maxChamp_loc[0]+50,maxChamp_loc[1]+75)
+                        pyautogui.moveTo(changeCoords(maxChamp_loc,"game"))
                         pressKey(keyboardButton.E)
                         pressKey(keyboardButton.R)
                         pressKey(keyboardButton.Q)
                         pressKey(keyboardButton.W)
                         pressKey(keyboardButton.Space)
                         pressKey(keyboardButton.T)
-                    else:
-                        pressKey(keyboardButton.W)
-
+                else:
+                    pressKey(keyboardButton.W)
+                    
                 #levelling up
                 if(locate("levelUpButton",screenshot)!=None):
                     directInputController.press_key(keyboardButton.Lctrl)
@@ -223,6 +233,7 @@ def c():
         else:
             buyItems()
 def d():
+    time.sleep(20)
     wincap = WindowCapture('League of Legends')
     while(True):
         try:
@@ -231,6 +242,8 @@ def d():
             break
         if(locate("playButton",screenshot)!=None):
             break
+        if(locate("honor",screenshot)!=None):
+            pyautogui.click(changeCoords(coordinates.client.honorButton,"client"))
         if(locate("okButton",screenshot,0.8)!=None):
             pyautogui.click(locate("okButton",screenshot,0.8))
         if(locate("xButton",screenshot,0.8)!=None):
@@ -245,36 +258,44 @@ def d():
 # cv.createTrackbar("US","Tracking",255,255,nothing)
 # cv.createTrackbar("UV","Tracking",255,255,nothing)
 # def e():
-#     # lh=cv.getTrackbarPos("LH","Tracking")
-#     # ls=cv.getTrackbarPos("LS","Tracking")
-#     # lv=cv.getTrackbarPos("LV","Tracking")
-#     # uh=cv.getTrackbarPos("UH","Tracking")
-#     # us=cv.getTrackbarPos("US","Tracking")
-#     # uv=cv.getTrackbarPos("UV","Tracking")
+# #     lh=cv.getTrackbarPos("LH","Tracking")
+# #     ls=cv.getTrackbarPos("LS","Tracking")
+# #     lv=cv.getTrackbarPos("LV","Tracking")
+# #     uh=cv.getTrackbarPos("UH","Tracking")
+# #     us=cv.getTrackbarPos("US","Tracking")
+# #     uv=cv.getTrackbarPos("UV","Tracking")
 #     while True:
 #         wincap=WindowCapture('League of Legends (TM) Client')
 #         try:
 #             screenshot = wincap.get_screenshot()
 #         except:
 #             break
-#         lower_range=np.array([98,155,167])
-#         upper_range=np.array([102,165,237])
+#     # lower_range=np.array([lh,ls,lv])
+#     # upper_range=np.array([uh,us,uv])
+#         lower_range=np.array([111,167,81])
+#         upper_range=np.array([121,215,130])
 #         img=name("casterMinion")
 #         img=cv.imread(img,cv.IMREAD_UNCHANGED)
 #         img=img[...,:3]
 #         img=np.ascontiguousarray(img)
 #         img=cv.cvtColor(img,cv.COLOR_BGR2HSV)
 #         img=cv.inRange(img,lower_range,upper_range)
-#         test=cv.cvtColor(screenshot,cv.COLOR_BGR2HSV)
-#         test=cv.inRange(test,lower_range,upper_range)
-#         result=cv.matchTemplate(test,img,cv.TM_CCORR)
+
+#         background=name("background")
+#         background=cv.imread(background,cv.IMREAD_UNCHANGED)
+#         background=background[...,:3]
+#         background=np.ascontiguousarray(background)
+#         background=screenshot
+#         background=cv.cvtColor(background,cv.COLOR_BGR2HSV)
+#         background=cv.inRange(background,lower_range,upper_range)
+
+#         result=cv.matchTemplate(background,img,cv.TM_CCOEFF_NORMED)
 #         min_val,max_val,min_loc,max_loc=cv.minMaxLoc(result)
 
-#         result=cv.matchTemplate(test,img,cv.TM_CCOEFF)
-#         min_val,max_val,min_loc,max_loc=cv.minMaxLoc(result)
 #         print(max_val)
-#         result=cv.bitwise_and(test,test,result)
-#         cv.rectangle(result,max_loc,(max_loc[0]+50,max_loc[1]+200),color=(223,82,134),thickness=2)
+
+#         result=cv.bitwise_and(background,background,result)
+#         cv.rectangle(result,max_loc,(max_loc[0]+50,max_loc[1]+50),color=(255,255,255),thickness=2)
 
 #         cv.imshow("result",result)
 #         cv.waitKey(1)#4,161,600 ->
@@ -283,8 +304,6 @@ def main():
         a()
         b()
         c()
-        time.sleep(60)
         d()
 
 main()
-#ready

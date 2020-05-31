@@ -21,6 +21,7 @@ class client:
     champButton=754-clientCoords[0],426-clientCoords[1]
     lockInButton=962-clientCoords[0],778-clientCoords[1]
     xButton=802-clientCoords[0],840-clientCoords[1]
+    honorButton=736-clientCoords[0],551-clientCoords[1]
 
 class game:
     tower=(1330-gameCoords[0],886-gameCoords[1])
