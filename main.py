@@ -167,18 +167,6 @@ def d():
                     time.sleep(9)
                     buyItems()
             else:
-                #finding casters
-                # lower_range=np.array([111,167,81])
-                # upper_range=np.array([121,215,130])
-                # img=name("casterMinion")
-                # img=cv.imread(img)
-                # img=img[...,:3]
-                # img=np.ascontiguousarray(img)
-                # img=cv.cvtColor(img,cv.COLOR_BGR2HSV)
-                # img=cv.inRange(img,lower_range,upper_range)
-                # background=cv.cvtColor(screenshot,cv.COLOR_BGR2HSV)
-                # background=cv.inRange(background,lower_range,upper_range)
-                # result=cv.matchTemplate(background,img,cv.TM_CCOEFF_NORMED)
                 max_loc=locateGame("casterMinion",screenshot,np.array([111,167,81]),np.array([121,215,130]),0.5)
                 if(max_loc!=None):
                     setPos(max_loc)  
@@ -187,39 +175,16 @@ def d():
                     rightClick(game.tower)
 
                 #finding champ
-                lower_range=np.array([2,204,165])
-                upper_range=np.array([4,204,166])
-                img=name("champHealth")
-                img=cv.imread(img)
-                img=img[...,:3]
-                img=np.ascontiguousarray(img)
-                img=cv.cvtColor(img,cv.COLOR_BGR2HSV)
-                img=cv.inRange(img,lower_range,upper_range)
-                background=cv.cvtColor(screenshot,cv.COLOR_BGR2HSV)
-                background=cv.inRange(background,lower_range,upper_range)
-                result=cv.matchTemplate(background,img,cv.TM_CCOEFF_NORMED)
-                minChamp_val,maxChamp_val,minChamp_loc,maxChamp_loc=cv.minMaxLoc(result)
-
+                maxChamp_loc=locateGame("champHealth",screenshot,np.array([2,204,165]),np.array([4,204,166]),0.5)
                 #checking tower range
-                lower_range=np.array([49,0,135])
-                upper_range=np.array([100,40,166])
-                img=name("tower")
-                img=cv.imread(img)
-                img=img[...,:3]
-                img=np.ascontiguousarray(img)
-                img=cv.cvtColor(img,cv.COLOR_BGR2HSV)
-                img=cv.inRange(img,lower_range,upper_range)
-                background=cv.cvtColor(screenshot,cv.COLOR_BGR2HSV)
-                background=cv.inRange(background,lower_range,upper_range)
-                result=cv.matchTemplate(background,img,cv.TM_CCOEFF_NORMED)
-                min_val,max_val,min_loc,max_loc=cv.minMaxLoc(result)
-                
+                max_loc=locateGame("tower",screenshot,np.array([49,0,135]),np.array([100,40,166]),0.5)
                 #checking if theres a enemy champion
-                if(maxChamp_val>=0.5):
+                print(maxChamp_loc,max_loc)
+                if(maxChamp_loc!=None):
                     #checking if you are not in tower range
-                    if(max_val<=0.5):
+                    if(max_loc==None):
                         pressKey(keyboardButton.T)
-                        maxChamp_loc=(maxChamp_loc[0]+gameCoords[0]+50,maxChamp_loc[1]+gameCoords[1]+75)
+                        maxChamp_loc=(maxChamp_loc[0]+50,maxChamp_loc[1]+75)
                         setPos(maxChamp_loc)
                         pressKey(keyboardButton.E)
                         pressKey(keyboardButton.R)
@@ -270,64 +235,6 @@ def e():
             click(locate("okButton",screenshot,0.8))
         if(locate("xButton",screenshot,0.8)!=None):
             click(locate("xButton",screenshot,0.8))
-# # def nothing(x):
-# #     pass
-# # cv.namedWindow("Tracking")
-# # cv.createTrackbar("LH","Tracking",0,255,nothing)
-# # cv.createTrackbar("LS","Tracking",0,255,nothing)
-# # cv.createTrackbar("LV","Tracking",0,255,nothing)
-# # cv.createTrackbar("UH","Tracking",255,255,nothing)
-# # cv.createTrackbar("US","Tracking",255,255,nothing)
-# # cv.createTrackbar("UV","Tracking",255,255,nothing)
-# def f():
-# #     lh=cv.getTrackbarPos("LH","Tracking")
-# #     ls=cv.getTrackbarPos("LS","Tracking")
-# #     lv=cv.getTrackbarPos("LV","Tracking")
-# #     uh=cv.getTrackbarPos("UH","Tracking")
-# #     us=cv.getTrackbarPos("US","Tracking")
-# #     uv=cv.getTrackbarPos("UV","Tracking")
-
-#     looptime=time.time()
-#     while True:
-#         wincap=WindowCapture('League of Legends (TM) Client')
-#         try:
-#             screenshot = wincap.get_screenshot()
-#         except:
-#             break
-#         # lower_range=np.array([lh,ls,lv])
-#         # upper_range=np.array([uh,us,uv])
-#         lower_range=np.array([49,0,135])
-#         upper_range=np.array([100,40,166])
-#         img=name("tower")
-#         img=cv.imread(img)
-#         img=img[...,:3]
-#         img=np.ascontiguousarray(img)
-#         img=cv.cvtColor(img,cv.COLOR_BGR2HSV)
-#         img=cv.inRange(img,lower_range,upper_range)
-
-#         background=name("test")
-#         background=cv.imread(background)
-#         background=background[...,:3]
-#         background=np.ascontiguousarray(background) 
-#         background=screenshot
-#         background=cv.cvtColor(background,cv.COLOR_BGR2HSV)
-#         background=cv.inRange(background,lower_range,upper_range)
-        
-
-
-#         result=cv.matchTemplate(background,img,cv.TM_CCOEFF_NORMED)
-#         min_val,max_val,min_loc,max_loc=cv.minMaxLoc(result)
-
-#         print(max_val)
-        
-#         result=cv.bitwise_and(background,background,result)
-#         cv.rectangle(result,max_loc,(max_loc[0]+50,max_loc[1]+50),color=(255,255,255),thickness=2)
-
-#         cv.imshow("result",result)
-#         cv.waitKey(1)
-#         #4,161,600 ->
-#         # print("fps",(1/(time.time()-looptime)))
-#         # looptime=time.time()
 def main():
     while True:
         a()
@@ -335,5 +242,4 @@ def main():
         c()
         d()
         e()
-
-d()
+main()
