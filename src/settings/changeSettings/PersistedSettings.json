@@ -51,7 +51,7 @@
                     "settings": [
                         {
                             "name": "ColorPalette",
-                            "value": "1"
+                            "value": "0"
                         }
                     ]
                 },
@@ -64,7 +64,7 @@
                         },
                         {
                             "name": "Countdown_Enabled",
-                            "value": "1"
+                            "value": "0"
                         },
                         {
                             "name": "Debug_Enabled",
@@ -72,71 +72,71 @@
                         },
                         {
                             "name": "Disable_Enabled",
-                            "value": "1"
+                            "value": "0"
                         },
                         {
                             "name": "Dodge_Enabled",
-                            "value": "1"
+                            "value": "0"
                         },
                         {
                             "name": "EnemyMagicalDamageCritical_Enabled",
-                            "value": "1"
+                            "value": "0"
                         },
                         {
                             "name": "EnemyMagicalDamage_Enabled",
-                            "value": "1"
+                            "value": "0"
                         },
                         {
                             "name": "EnemyPhysicalDamageCritical_Enabled",
-                            "value": "1"
+                            "value": "0"
                         },
                         {
                             "name": "EnemyPhysicalDamage_Enabled",
-                            "value": "1"
+                            "value": "0"
                         },
                         {
                             "name": "EnemyTrueDamageCritical_Enabled",
-                            "value": "1"
+                            "value": "0"
                         },
                         {
                             "name": "EnemyTrueDamage_Enabled",
-                            "value": "1"
+                            "value": "0"
                         },
                         {
                             "name": "Experience_Enabled",
-                            "value": "1"
+                            "value": "0"
                         },
                         {
                             "name": "Gold_Enabled",
-                            "value": "1"
+                            "value": "0"
                         },
                         {
                             "name": "Heal_Enabled",
-                            "value": "1"
+                            "value": "0"
                         },
                         {
                             "name": "Invulnerable_Enabled",
-                            "value": "1"
+                            "value": "0"
                         },
                         {
                             "name": "Level_Enabled",
-                            "value": "1"
+                            "value": "0"
                         },
                         {
                             "name": "MagicalDamageCritical_Enabled",
-                            "value": "1"
+                            "value": "0"
                         },
                         {
                             "name": "MagicalDamage_Enabled",
-                            "value": "1"
+                            "value": "0"
                         },
                         {
                             "name": "ManaDamage_Enabled",
-                            "value": "1"
+                            "value": "0"
                         },
                         {
                             "name": "ManaHeal_Enabled",
-                            "value": "1"
+                            "value": "0"
                         },
                         {
                             "name": "OMW_Enabled",
@@ -144,11 +144,11 @@
                         },
                         {
                             "name": "PhysicalDamageCritical_Enabled",
-                            "value": "1"
+                            "value": "0"
                         },
                         {
                             "name": "PhysicalDamage_Enabled",
-                            "value": "1"
+                            "value": "0"
                         },
                         {
                             "name": "PracticeToolDPS_Enabled",
@@ -164,11 +164,11 @@
                         },
                         {
                             "name": "QuestComplete_Enabled",
-                            "value": "1"
+                            "value": "0"
                         },
                         {
                             "name": "QuestReceived_Enabled",
-                            "value": "1"
+                            "value": "0"
                         },
                         {
                             "name": "ScoreDarkStar_Enabled",
@@ -184,7 +184,7 @@
                         },
                         {
                             "name": "Score_Enabled",
-                            "value": "1"
+                            "value": "0"
                         },
                         {
                             "name": "ShieldBonusDamage_Enabled",
@@ -192,15 +192,15 @@
                         },
                         {
                             "name": "Special_Enabled",
-                            "value": "1"
+                            "value": "0"
                         },
                         {
                             "name": "TrueDamageCritical_Enabled",
-                            "value": "1"
+                            "value": "0"
                         },
                         {
                             "name": "TrueDamage_Enabled",
-                            "value": "1"
+                            "value": "0"
                         }
                     ]
                 },
@@ -213,7 +213,7 @@
                         },
                         {
                             "name": "CfgVersion",
-                            "value": "10.10.3039"
+                            "value": "10.11.2991"
                         },
                         {
                             "name": "CursorOverride",
@@ -225,7 +225,7 @@
                         },
                         {
                             "name": "EnableAudio",
-                            "value": "1"
+                            "value": "0"
                         },
                         {
                             "name": "EnableLeftMouseButtonAttackMove",
@@ -282,7 +282,7 @@
                         },
                         {
                             "name": "CameraLockMode",
-                            "value": "1"
+                            "value": "0"
                         },
                         {
                             "name": "ChatScale",
@@ -330,7 +330,7 @@
                         },
                         {
                             "name": "GlobalScale",
-                            "value": "0"
+                            "value": "1.0000"
                         },
                         {
                             "name": "GlobalScaleReplay",
@@ -346,11 +346,11 @@
                         },
                         {
                             "name": "ItemShopPrevResizeHeight",
-                            "value": "1200"
+                            "value": "768"
                         },
                         {
                             "name": "ItemShopPrevResizeWidth",
-                            "value": "1920"
+                            "value": "1024"
                         },
                         {
                             "name": "ItemShopPrevX",
@@ -394,7 +394,7 @@
                         },
                         {
                             "name": "MinimapScale",
-                            "value": "1.0000"
+                            "value": "2.0000"
                         },
                         {
                             "name": "MirroredScoreboard",
@@ -434,7 +434,7 @@
                         },
                         {
                             "name": "ShowAllChannelChat",
-                            "value": "1"
+                            "value": "0"
                         },
                         {
                             "name": "ShowAlliedChat",
@@ -454,11 +454,11 @@
                         },
                         {
                             "name": "ShowHealthBarShake",
-                            "value": "1"
+                            "value": "0"
                         },
                         {
                             "name": "ShowNeutralCamps",
-                            "value": "1"
+                            "value": "0"
                         },
                         {
                             "name": "ShowPlayerStats",
@@ -474,7 +474,7 @@
                         },
                         {
                             "name": "ShowSummonerNamesInScoreboard",
-                            "value": "1"
+                            "value": "0"
                         },
                         {
                             "name": "ShowTeamFramesOnLeft",
@@ -482,7 +482,7 @@
                         },
                         {
                             "name": "ShowTimestamps",
-                            "value": "1"
+                            "value": "0"
                         },
                         {
                             "name": "SmartCastOnKeyRelease",
@@ -499,7 +499,7 @@
                     "settings": [
                         {
                             "name": "LossOfControlEnabled",
-                            "value": "1"
+                            "value": "0"
                         },
                         {
                             "name": "ShowSlows",
@@ -512,7 +512,7 @@
                     "settings": [
                         {
                             "name": "EnableHUDAnimations",
-                            "value": "1"
+                            "value": "0"
                         }
                     ]
                 },
@@ -616,7 +616,7 @@
                         },
                         {
                             "name": "evtCameraLockToggle",
-                            "value": "[y]"
+                            "value": "[0]"
                         },
                         {
                             "name": "evtCameraSnap",
@@ -652,7 +652,7 @@
                         },
                         {
                             "name": "evtChampionOnly",
-                            "value": "[`]"
+                            "value": "[t]"
                         },
                         {
                             "name": "evtChatHistory",
@@ -816,7 +816,7 @@
                         },
                         {
                             "name": "evtRadialEmoteInstantOpen",
-                            "value": "[t]"
+                            "value": "[<Unbound>]"
                         },
                         {
                             "name": "evtRadialEmoteOpen",

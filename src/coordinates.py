@@ -38,5 +38,7 @@ class game:
     item7=(634-448+gameCoords[0],732-216+gameCoords[1])
     item8=(684-448+gameCoords[0],732-216+gameCoords[1])
     item9=(734-448+gameCoords[0],732-216+gameCoords[1])
+    dBlade=(634-448+gameCoords[0],437-216+gameCoords[1])
+    potion=(684-448+gameCoords[0],437-216+gameCoords[1])
     healthBar=(950-448+gameCoords[0],955-216+gameCoords[1])
     recallButton=(1197-448+gameCoords[0],940-216+gameCoords[1])
