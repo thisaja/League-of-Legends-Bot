@@ -14,11 +14,11 @@ import random
 def log(x):
     print(datetime.now().strftime("%H:%M:%S -"),x)
 def changeSettings():
-    shutil.copyfile("src\\settings\\changeSettings\\game.cfg","D:\\Riot Games\\League of Legends\\Config\\game.cfg")
-    shutil.copyfile("src\\settings\\changeSettings\\PersistedSettings.json","D:\\Riot Games\\League of Legends\\Config\\PersistedSettings.json")
+    shutil.copyfile("src\\settings\\changeSettings\\game.cfg","C:\\Riot Games\\League of Legends\\Config\\game.cfg")
+    shutil.copyfile("src\\settings\\changeSettings\\PersistedSettings.json","C:\\Riot Games\\League of Legends\\Config\\PersistedSettings.json")
 def changeSettingsBack():
-    shutil.copyfile("src\\settings\\changeSettingsBack\\game.cfg","D:\\Riot Games\\League of Legends\\Config\\game.cfg")
-    shutil.copyfile("src\\settings\\changeSettingsBack\\PersistedSettings.json","D:\\Riot Games\\League of Legends\\Config\\PersistedSettings.json")
+    shutil.copyfile("src\\settings\\changeSettingsBack\\game.cfg","C:\\Riot Games\\League of Legends\\Config\\game.cfg")
+    shutil.copyfile("src\\settings\\changeSettingsBack\\PersistedSettings.json","C:\\Riot Games\\League of Legends\\Config\\PersistedSettings.json")
 def name(img):
     return "src\\images\\"+img+".PNG"
 def locate(img,screenshot,threshold=0.9):
@@ -93,26 +93,26 @@ def buyItems():
     log("Buying items...")
     pressKey(keyboardButton.P)
     time.sleep(1)
-    # rightClick(game.potion)
-    # time.sleep(0.2)
-    # rightClick(game.item1)
-    # time.sleep(0.2)
-    # rightClick(game.item2)
-    # time.sleep(0.2)
-    # rightClick(game.item3)
-    # time.sleep(0.2)
-    # rightClick(game.item4)
-    # time.sleep(0.2)
-    # rightClick(game.item5)
-    # time.sleep(0.2)
-    # rightClick(game.item6)
-    # time.sleep(0.2)
-    # rightClick(game.item7)
-    # time.sleep(0.2)
-    # rightClick(game.item8)
-    # time.sleep(0.2)
-    # rightClick(game.item9)
-    # time.sleep(0.2)
+    rightClick(game.potion)
+    time.sleep(0.2)
+    rightClick(game.item1)
+    time.sleep(0.2)
+    rightClick(game.item2)
+    time.sleep(0.2)
+    rightClick(game.item3)
+    time.sleep(0.2)
+    rightClick(game.item4)
+    time.sleep(0.2)
+    rightClick(game.item5)
+    time.sleep(0.2)
+    rightClick(game.item6)
+    time.sleep(0.2)
+    rightClick(game.item7)
+    time.sleep(0.2)
+    rightClick(game.item8)
+    time.sleep(0.2)
+    rightClick(game.item9)
+    time.sleep(0.2)
     time.sleep(1)
     pressKey(keyboardButton.Escape)
     time.sleep(5)
@@ -146,7 +146,7 @@ def b():
         if(locate("chooseChampion",screenshot)!=None):
             chooseChamp()
     log("Waiting for game window...")
-    time.sleep(10)
+    time.sleep(15)
 def c():
     log("Game window found.")
     wincap=WindowCapture('League of Legends (TM) Client')
@@ -167,7 +167,7 @@ def d():
     q=False
     w=False
     e=False
-    buyItems()
+    startBuy()
     time.sleep(1)
     log("Locking screen...")
     pressKey(keyboardButton.n0)
@@ -178,17 +178,17 @@ def d():
         except:
             break
         
-        if(getPixel(game.recallButton)!=(64, 85, 95)):
+        if(getPixel(game.recallButton)==(80, 187, 238)):
             #checking health
-            if(getPixel(game.healthBar)==(1,13,7)):
+            if(getPixel(game.healthBar)==(1,12,7)):
                 rightClick(game.base)
                 rightClick(game.base)
                 pressKey(keyboardButton.D)
                 pressKey(keyboardButton.F)
-                #pressKey(keyboardButton.n1)
+                pressKey(keyboardButton.n1)
                 flag=True
                 for i in range(8):
-                    flag=getPixel(game.healthBar)==(1,13,7)
+                    flag=getPixel(game.healthBar)==(1,12,7)
                     rightClick(game.base)
                     time.sleep(1)
                     if(flag==False):
@@ -197,7 +197,7 @@ def d():
                     pressKey(keyboardButton.B)
                     flag2=True
                     for i in range(9):
-                        flag2=getPixel(game.healthBar)==(1,13,7)
+                        flag2=getPixel(game.healthBar)==(1,12,7)
                         time.sleep(1)
                         if(flag2==False):
                             break
@@ -287,12 +287,16 @@ def main():
         log("Starting in "+str(i))
         time.sleep(1)
     log("Starting in 0")
+
+    startTime=time.time()
     while True:
         a()
         b()
         c()
         d()
         e()
-
+        if(time.time()-startTime>=(12*60*60)):
+            log("Taking a random break...")
+            time.sleep((random.randint(15,45)*60))
+            startTime=time.time()
 main()
-
