@@ -52,7 +52,7 @@ PyAutoGUI==0.9.50
 pycparser==2.20
 PyDirectInput==1.0.1
 PyGetWindow==0.0.8
-Pygments==2.6.1
+Pygments==2.7.4
 PyInstaller==3.6
 PyMsgBox==1.0.8
 pynput==1.6.8
