@@ -8,5 +8,6 @@ Instructions:
 6. Change the league of legends folder path in main.py   
 7. Run main.py
 
-
 https://youtu.be/pA777j_b-ZU
+https://user-images.githubusercontent.com/42302646/185757319-70cb2d8d-cb54-455e-a494-b0c00712149b.mp4
+
