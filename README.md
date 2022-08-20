@@ -7,3 +7,6 @@ Instructions:
 5. Turn on "close client during game"
 6. Change the league of legends folder path in main.py   
 7. Run main.py
+
+
+https://youtu.be/pA777j_b-ZU
